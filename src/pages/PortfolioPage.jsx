@@ -101,7 +101,7 @@ const PortfolioPage = () => {
                       {project.results.map((result, idx) => (
                         <li key={idx} style={{ 
                           padding: '8px 0', 
-                          color: '#28a745',
+                          color: 'var(--black)',
                           fontWeight: 'bold'
                         }}>
                           ✓ {result}

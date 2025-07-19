@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Footer from '../components/Footer';
 
 const BlogPage = () => {
@@ -11,7 +11,7 @@ const BlogPage = () => {
       date: 'January 15, 2024',
       category: 'Digital Marketing',
       readTime: '5 min read',
-      image: 'https://via.placeholder.com/400x250/007bff/ffffff?text=Digital+Marketing+Trends'
+      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80' // Digital Marketing
     },
     {
       title: 'SEO Best Practices for 2024',
@@ -21,7 +21,7 @@ const BlogPage = () => {
       date: 'January 10, 2024',
       category: 'SEO',
       readTime: '7 min read',
-      image: 'https://via.placeholder.com/400x250/28a745/ffffff?text=SEO+Best+Practices'
+      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80' // SEO
     },
     {
       title: 'Social Media Strategy for Small Businesses',
@@ -31,7 +31,7 @@ const BlogPage = () => {
       date: 'January 8, 2024',
       category: 'Social Media',
       readTime: '6 min read',
-      image: 'https://via.placeholder.com/400x250/ffc107/ffffff?text=Social+Media+Strategy'
+      image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80' // Social Media
     },
     {
       title: 'The Future of E-commerce: What to Expect',
@@ -41,7 +41,7 @@ const BlogPage = () => {
       date: 'January 5, 2024',
       category: 'E-commerce',
       readTime: '8 min read',
-      image: 'https://via.placeholder.com/400x250/dc3545/ffffff?text=E-commerce+Future'
+      image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80' // E-commerce
     },
     {
       title: 'Content Marketing: Creating Value for Your Audience',
@@ -51,7 +51,7 @@ const BlogPage = () => {
       date: 'January 3, 2024',
       category: 'Content Marketing',
       readTime: '6 min read',
-      image: 'https://via.placeholder.com/400x250/6f42c1/ffffff?text=Content+Marketing'
+      image: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80' // Content Marketing
     },
     {
       title: 'Email Marketing Automation: A Complete Guide',
@@ -61,11 +61,16 @@ const BlogPage = () => {
       date: 'December 30, 2023',
       category: 'Email Marketing',
       readTime: '9 min read',
-      image: 'https://via.placeholder.com/400x250/17a2b8/ffffff?text=Email+Automation'
+      image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=400&q=80' // Email Marketing
     }
   ];
 
   const categories = ['All', 'Digital Marketing', 'SEO', 'Social Media', 'E-commerce', 'Content Marketing', 'Email Marketing'];
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const filteredPosts = selectedCategory === 'All'
+    ? blogPosts
+    : blogPosts.filter(post => post.category === selectedCategory);
 
   return (
     <div>
@@ -85,15 +90,21 @@ const BlogPage = () => {
           marginBottom: '50px' 
         }}>
           {categories.map((category, index) => (
-            <button key={index} style={{ 
-              padding: '8px 16px', 
-              border: category === 'All' ? '2px solid var(--gold)' : '1px solid #ddd',
-              background: category === 'All' ? 'var(--gold)' : '#fff',
-              color: category === 'All' ? 'var(--black)' : '#333',
-              borderRadius: '20px',
-              cursor: 'pointer',
-              fontSize: '14px'
-            }}>
+            <button
+              key={index}
+              onClick={() => setSelectedCategory(category)}
+              style={{ 
+                padding: '8px 16px', 
+                border: selectedCategory === category ? '2px solid var(--gold)' : '1px solid #ddd',
+                background: selectedCategory === category ? 'var(--gold)' : '#fff',
+                color: selectedCategory === category ? 'var(--black)' : '#333',
+                borderRadius: '20px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                fontWeight: selectedCategory === category ? 'bold' : 'normal',
+                transition: 'all 0.2s'
+              }}
+            >
               {category}
             </button>
           ))}
@@ -101,7 +112,7 @@ const BlogPage = () => {
 
         {/* Blog Posts Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '40px' }}>
-          {blogPosts.map((post, index) => (
+          {filteredPosts.map((post, index) => (
             <article key={index} style={{ 
               border: '1px solid #e0e0e0', 
               borderRadius: '12px', 
@@ -111,10 +122,15 @@ const BlogPage = () => {
               transition: 'transform 0.2s',
               cursor: 'pointer'
             }}>
-              <div style={{ 
-                height: '200px', 
-                background: `url(${post.image}) center/cover`
-              }}></div>
+              <img src={post.image} alt={post.title} style={{
+                width: '100%',
+                height: 180,
+                objectFit: 'cover',
+                borderTopLeftRadius: 12,
+                borderTopRightRadius: 12,
+                filter: 'grayscale(100%) contrast(1.1)',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.08)'
+              }} />
               
               <div style={{ padding: '25px' }}>
                 <div style={{ 
