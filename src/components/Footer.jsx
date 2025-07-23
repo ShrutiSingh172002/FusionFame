@@ -9,7 +9,7 @@ const Footer = () => (
     marginTop: '4rem'
   }}>
     <div className="container">
-      <div className="grid grid-4" style={{ marginBottom: '2rem' }}>
+      <div className="footer-grid grid-4" style={{ marginBottom: '2rem', display: 'grid', gap: '2rem', gridTemplateColumns: 'repeat(4, 1fr)' }}>
         {/* Company Info */}
         <div>
           <h3 style={{ color: 'var(--gold)', marginBottom: '1rem' }}>Fusionfame Digital</h3>
@@ -87,7 +87,7 @@ const Footer = () => (
               </Link>
             </li>
             <li style={{ marginBottom: '0.5rem' }}>
-              <a href="#" style={{ color: 'var(--white)', textDecoration: 'none', fontSize: '0.9rem' }}>
+              <a href="/terms" style={{ color: 'var(--white)', textDecoration: 'none', fontSize: '0.9rem' }}>
                 Terms & Conditions
               </a>
             </li>
@@ -155,6 +155,26 @@ const Footer = () => (
         </p>
       </div>
     </div>
+    {/* Responsive Footer CSS */}
+    <style>{`
+      @media (max-width: 900px) {
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 600px) {
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+        .footer-grid > div {
+          text-align: center;
+        }
+        .footer-grid a, .footer-grid ul {
+          justify-content: center;
+        }
+      }
+    `}</style>
   </footer>
 );
 

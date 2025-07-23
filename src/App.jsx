@@ -7,6 +7,7 @@ import ServicesPage from './pages/ServicesPage';
 import PortfolioPage from './pages/PortfolioPage';
 import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
+import Terms from './pages/Terms';
 import './App.css';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/terms" element={<Terms />} />
         </Routes>
       </div>
     </Router>

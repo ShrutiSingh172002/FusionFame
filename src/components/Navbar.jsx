@@ -56,27 +56,22 @@ const Navbar = () => {
         </button>
         {/* Nav Links */}
         <div
-          className="navbar-links"
+          className={`navbar-links${menuOpen ? ' open' : ''}`}
           style={{
             display: 'flex',
             gap: 'clamp(16px, 3vw, 32px)',
             flexWrap: 'wrap',
             alignItems: 'center',
-            ...(menuOpen
-              ? {
-                  position: 'absolute',
-                  top: '100%',
-                  right: 0,
-                  left: 0,
-                  background: 'var(--white)',
-                  flexDirection: 'column',
-                  gap: 0,
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
-                  zIndex: 1001,
-                  padding: '16px 0',
-                  display: 'flex',
-                }
-              : {})
+            position: menuOpen ? 'absolute' : undefined,
+            top: menuOpen ? '100%' : undefined,
+            right: menuOpen ? 0 : undefined,
+            left: menuOpen ? 0 : undefined,
+            background: menuOpen ? 'var(--white)' : undefined,
+            flexDirection: menuOpen ? 'column' : undefined,
+            gap: menuOpen ? 0 : 'clamp(16px, 3vw, 32px)',
+            boxShadow: menuOpen ? '0 8px 24px rgba(0,0,0,0.08)' : undefined,
+            zIndex: menuOpen ? 1001 : undefined,
+            padding: menuOpen ? '16px 0' : undefined,
           }}
         >
           {navLinks.map(link => (
@@ -113,7 +108,7 @@ const Navbar = () => {
           .navbar-links {
             display: none !important;
           }
-          .navbar-links[style*='flex-direction: column'] {
+          .navbar-links.open {
             display: flex !important;
           }
         }

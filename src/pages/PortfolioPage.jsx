@@ -54,101 +54,122 @@ const PortfolioPage = () => {
   ];
 
   return (
-    <div>
-      <div style={{ padding: '120px 20px 60px', maxWidth: 1200, margin: '0 auto' }}>
-        <h1 style={{ textAlign: 'center', marginBottom: '20px', color: '#333' }}>Our Portfolio</h1>
-        <p style={{ textAlign: 'center', maxWidth: 800, margin: '0 auto 60px', lineHeight: '1.6', color: '#555' }}>
-          Explore our successful projects and see how we've helped businesses achieve their digital marketing goals. 
-          Each project showcases our expertise and commitment to delivering results.
-        </p>
+    <>
+      <div className="portfolio-container">
+        <div style={{ padding: '120px 20px 60px', maxWidth: 1200, margin: '0 auto' }}>
+          <h1 style={{ textAlign: 'center', marginBottom: '20px', color: '#333' }}>Our Portfolio</h1>
+          <p style={{ textAlign: 'center', maxWidth: 800, margin: '0 auto 60px', lineHeight: '1.6', color: '#555' }}>
+            Explore our successful projects and see how we've helped businesses achieve their digital marketing goals. 
+            Each project showcases our expertise and commitment to delivering results.
+          </p>
 
-        <div style={{ display: 'grid', gap: '60px' }}>
-          {projects.map((project, index) => (
-            <div key={index} style={{ 
-              border: '1px solid #e0e0e0', 
-              borderRadius: '12px', 
-              overflow: 'hidden',
-              background: '#fff',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
-            }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '400px' }}>
-                <div style={{ padding: '40px' }}>
-                  <h2 style={{ color: 'var(--gold)', marginBottom: '10px' }}>{project.title}</h2>
-                  <p style={{ color: '#666', marginBottom: '20px', fontWeight: 'bold' }}>Client: {project.client}</p>
-                  <p style={{ lineHeight: '1.6', color: '#555', marginBottom: '25px' }}>{project.description}</p>
-                  
-                  <div style={{ marginBottom: '25px' }}>
-                    <h3 style={{ marginBottom: '10px', color: '#333' }}>Services Provided:</h3>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                      {project.services.map((service, idx) => (
-                                                 <span key={idx} style={{ 
-                           background: 'var(--gold-light)', 
-                           padding: '6px 12px', 
-                           borderRadius: '20px',
-                           fontSize: '14px',
-                           color: 'var(--gold)',
-                           border: '1px solid var(--gold)'
-                         }}>
-                          {service}
-                        </span>
-                      ))}
+          <div className="portfolio-projects" style={{ display: 'grid', gap: '60px' }}>
+            {projects.map((project, index) => (
+              <div key={index} style={{ 
+                border: '1px solid #e0e0e0', 
+                borderRadius: '12px', 
+                overflow: 'hidden',
+                background: '#fff',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+              }}>
+                <div className="portfolio-project-card-cols" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '400px' }}>
+                  <div style={{ padding: '40px' }}>
+                    <h2 style={{ color: 'var(--gold)', marginBottom: '10px' }}>{project.title}</h2>
+                    <p style={{ color: '#666', marginBottom: '20px', fontWeight: 'bold' }}>Client: {project.client}</p>
+                    <p style={{ lineHeight: '1.6', color: '#555', marginBottom: '25px' }}>{project.description}</p>
+                    <div style={{ marginBottom: '25px' }}>
+                      <h3 style={{ marginBottom: '10px', color: '#333' }}>Services Provided:</h3>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                        {project.services.map((service, idx) => (
+                          <span key={idx} style={{ 
+                            background: 'var(--gold-light)', 
+                            padding: '6px 12px', 
+                            borderRadius: '20px',
+                            fontSize: '14px',
+                            color: 'var(--gold)',
+                            border: '1px solid var(--gold)'
+                          }}>
+                            {service}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <h3 style={{ marginBottom: '10px', color: '#333' }}>Results Achieved:</h3>
+                      <ul style={{ listStyle: 'none', padding: 0 }}>
+                        {project.results.map((result, idx) => (
+                          <li key={idx} style={{ 
+                            padding: '8px 0', 
+                            color: 'var(--black)',
+                            fontWeight: 'bold'
+                          }}>
+                            ✓ {result}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-
-                  <div>
-                    <h3 style={{ marginBottom: '10px', color: '#333' }}>Results Achieved:</h3>
-                    <ul style={{ listStyle: 'none', padding: 0 }}>
-                      {project.results.map((result, idx) => (
-                        <li key={idx} style={{ 
-                          padding: '8px 0', 
-                          color: 'var(--black)',
-                          fontWeight: 'bold'
-                        }}>
-                          ✓ {result}
-                        </li>
-                      ))}
-                    </ul>
+                  <div style={{ 
+                    background: `url(${project.image}) center/cover`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
                   </div>
                 </div>
-                
-                <div style={{ 
-                  background: `url(${project.image}) center/cover`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        <div style={{ 
-          background: '#f9f9f9', 
-          padding: '40px', 
-          borderRadius: '8px', 
-          marginTop: '60px',
-          textAlign: 'center'
-        }}>
-          <h2 style={{ marginBottom: '20px' }}>Ready to Start Your Project?</h2>
-          <p style={{ marginBottom: '30px', color: '#555' }}>
-            Let's discuss how we can help you achieve similar results for your business.
-          </p>
-          <a href="/contact" style={{ 
-            display: 'inline-block', 
-            padding: '12px 32px', 
-            background: 'var(--gold)', 
-            color: 'var(--black)', 
-            borderRadius: '6px', 
-            textDecoration: 'none', 
-            fontWeight: 'bold' 
+          <div style={{ 
+            background: '#f9f9f9', 
+            padding: '40px', 
+            borderRadius: '8px', 
+            marginTop: '60px',
+            textAlign: 'center'
           }}>
-            Start Your Project
-          </a>
+            <h2 style={{ marginBottom: '20px' }}>Ready to Start Your Project?</h2>
+            <p style={{ marginBottom: '30px', color: '#555' }}>
+              Let's discuss how we can help you achieve similar results for your business.
+            </p>
+            <a href="/contact" style={{ 
+              display: 'inline-block', 
+              padding: '12px 32px', 
+              background: 'var(--gold)', 
+              color: 'var(--black)', 
+              borderRadius: '6px', 
+              textDecoration: 'none', 
+              fontWeight: 'bold' 
+            }}>
+              Start Your Project
+            </a>
+          </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+      <style>{`
+        @media (max-width: 900px) {
+          .portfolio-projects {
+            gap: 32px !important;
+          }
+          .portfolio-project-card-cols {
+            grid-template-columns: 1fr !important;
+            min-height: unset !important;
+          }
+          .portfolio-project-card-cols > div:first-child {
+            padding: 24px !important;
+          }
+        }
+        @media (max-width: 600px) {
+          .portfolio-container {
+            padding: 0 8px !important;
+          }
+          .portfolio-project-card-cols > div:first-child {
+            padding: 12px !important;
+          }
+        }
+      `}</style>
+    </>
   );
 };
 
